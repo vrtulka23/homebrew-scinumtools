@@ -7,6 +7,7 @@ class Puq < Formula
 
   depends_on "cmake" => :build
   depends_on "googletest"
+  depends_on "google-benchmark"
   
   def install
     system "sh", "setup.sh", "-b"
