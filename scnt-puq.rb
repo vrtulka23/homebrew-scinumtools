@@ -1,4 +1,4 @@
-class Puq < Formula
+class ScntPuq < Formula
   desc "Implementation of physical unit calculations in C++"
   homepage "https://github.com/vrtulka23/puq-cpp"
   url "https://github.com/vrtulka23/puq-cpp/releases/download/v1.0.2/puq-v1.0.2.tar.gz"
@@ -8,6 +8,7 @@ class Puq < Formula
   depends_on "cmake" => :build
   depends_on "googletest"
   depends_on "google-benchmark"
+  depends_on "vrtulka23/scinumtools/scnt-exs"
   
   def install
     system "sh", "setup.sh", "-b"

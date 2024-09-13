@@ -1,4 +1,4 @@
-class Exs < Formula
+class ScntExs < Formula
   desc "Implementation of expression solver in C++"
   homepage "https://github.com/vrtulka23/exs-cpp"
   url "https://github.com/vrtulka23/exs-cpp/archive/refs/tags/v1.0.0.tar.gz"
