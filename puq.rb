@@ -6,7 +6,8 @@ class Puq < Formula
   license "MIT"
 
   depends_on "cmake" => :build
-
+  depends_on "googletest"
+  
   def install
     system "sh", "setup.sh", "-b"
     bin.install "build/puq"
