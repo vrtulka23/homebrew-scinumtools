@@ -11,6 +11,7 @@ class ScntExs < Formula
   def install
     system "sh", "setup.sh", "-b"
     include.install Dir["src/*"]
+    (lib/"cmake/scnt-exs").install "build/scnt-exs-config.cmake", "build/scnt-exs-config-version.cmake" #, "build/MyLibraryTargets.cmake"
   end
 
   test do
