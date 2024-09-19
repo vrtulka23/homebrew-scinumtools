@@ -1,20 +1,29 @@
 class ScntExs < Formula
   desc "Implementation of expression solver in C++"
   homepage "https://github.com/vrtulka23/scnt-exs"
-  url "https://github.com/vrtulka23/scnt-exs/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "f95384d4b30a3ad8747255dc9cab0aae593fe595a92a4b7340d054a5e730f5db"
+  url "https://github.com/vrtulka23/scnt-exs/archive/refs/tags/v1.0.8.tar.gz"
+  sha256 "080e49cb9e5e16ca2bc1904d36a55f1d5f56c18071424291487da6e7c33a6229"
   license "MIT"
 
   depends_on "cmake" => :build
   depends_on "googletest"
   
   def install
-    system "sh", "setup.sh", "-b"
-    include.install Dir["src/*"]
-    (lib/"cmake/scnt-exs").install "build/scnt-exs-config.cmake", "build/scnt-exs-config-version.cmake" #, "build/MyLibraryTargets.cmake"
+    mkdir "build" do
+      system "cmake", "..", *std_cmake_args
+      system "make", "install"
+    end
   end
 
   test do
-    system "false"
+    (testpath/"test.cpp").write <<~EOS
+      #include <scnt-exs/exs.h>
+      int main() {
+        return 0;
+      }
+    EOS
+    system ENV.cxx, "test.cpp", "-o", "test", "-I#{include}"
+    system "./test"
+    puts "Hello, testing is working"
   end
 end
