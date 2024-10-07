@@ -12,8 +12,10 @@ class ScntPuq < Formula
   depends_on "python@3.12"
   
   def install
-    system "cmake", "..", *std_cmake_args
-    system "make", "install"
+    mkdir "build" do
+      system "cmake", "..", *std_cmake_args
+      system "make", "install"
+    end
   end
 
   test do
