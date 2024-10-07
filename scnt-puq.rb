@@ -9,7 +9,7 @@ class ScntPuq < Formula
   depends_on "googletest"
   depends_on "google-benchmark"
   depends_on "vrtulka23/scinumtools/scnt-exs"
-  depends_on "python@3.y"
+  depends_on "python@3.12"
   
   def install
     system "cmake", "..", *std_cmake_args
