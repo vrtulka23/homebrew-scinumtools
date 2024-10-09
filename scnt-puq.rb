@@ -18,12 +18,22 @@ class ScntPuq < Formula
   #  url "https://files.pythonhosted.org/packages/09/d2/04db104cda0777cd22c55f83e4f9a5ff586f3abc1ee1a47a065a02428e6d/pypuq-1.3.1.tar.gz"
   #  sha256 "d94a49ed535f10a55dff94c3d22b4faa916d6547a968db8929e92dffcd834e9d"
   #end
-  
+
   def install
+
+    env_file = "settings.env"
+    if File.exist?(env_file)
+      File.readlines(env_file).each do |line|
+        line = line.sub(/^export\s+/, '')
+        key, value = line.strip.split('=', 2)
+        value = value.gsub(/\A["']|["']\Z/, '') if value
+        ENV[key] = value if key && value
+      end
+    end
+    
     # install scnt-puq
     mkdir "build" do
-      system "source", "settings.env"
-      system "cmake", "..", *std_cmake_args, "-DCODE_VERSION=${CODE_VERSION}"
+      system "cmake", "..", *std_cmake_args
       system "make", "install"
     end
     # install pypuq
