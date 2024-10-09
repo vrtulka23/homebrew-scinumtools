@@ -20,7 +20,7 @@ class ScntPuq < Formula
     end
     # install pypuq
     ENV.prepend_path "PATH", Formula["python@3"].opt_bin 
-    system "pip3", "install", "pypuq>=1.0" 
+    system "pip3", "install", "--user", "pypuq>=1.0" 
   end
 
   test do
