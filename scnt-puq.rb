@@ -9,7 +9,7 @@ class ScntPuq < Formula
   depends_on "googletest"
   depends_on "google-benchmark"
   depends_on "vrtulka23/scinumtools/scnt-exs"
-  depends_on "python@3.x"
+  depends_on "python@3"
   depends_on "pybind11"
   
   def install
@@ -19,7 +19,7 @@ class ScntPuq < Formula
       system "make", "install"
     end
     # install pypuq
-    ENV.prepend_path "PATH", Formula["python@3.x"].opt_bin 
+    ENV.prepend_path "PATH", Formula["python@3"].opt_bin 
     system "pip3", "install", "pypuq>=1.0" 
   end
 
