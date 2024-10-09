@@ -3,8 +3,8 @@ class ScntPuq < Formula
   
   desc "Implementation of physical unit calculations in C++"
   homepage "https://github.com/vrtulka23/scnt-puq"
-  url "https://github.com/vrtulka23/scnt-puq/archive/refs/tags/v1.3.4.tar.gz"
-  sha256 "08399c5487ca9fdc156623e43205c0cfaca592b24bc5d2d886912668b5f463f3"
+  url "https://github.com/vrtulka23/scnt-puq/archive/refs/tags/v1.3.5.tar.gz"
+  sha256 "e7c99f8f800bcac14428c3e6e08ec0eb35b27cfaaacd54a846174b388720fb2a"
   license "MIT"
 
   depends_on "cmake" => :build
@@ -22,7 +22,8 @@ class ScntPuq < Formula
   def install
     # install scnt-puq
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args
+      system "source", "settings.env"
+      system "cmake", "..", *std_cmake_args, "-DCODE_VERSION=${CODE_VERSION}"
       system "make", "install"
     end
     # install pypuq
