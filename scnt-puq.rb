@@ -33,7 +33,7 @@ class ScntPuq < Formula
     
     # install scnt-puq
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args
+      system "cmake", "..", *std_cmake_args, "-DCODE_VERSION=#{ENV['CODE_VERSION']}"
       system "make", "install"
     end
     # install pypuq
