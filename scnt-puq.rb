@@ -3,8 +3,8 @@ class ScntPuq < Formula
   
   desc "Implementation of physical unit calculations in C++"
   homepage "https://github.com/vrtulka23/scnt-puq"
-  url "https://github.com/vrtulka23/scnt-puq/archive/refs/tags/v1.3.6.tar.gz"
-  sha256 "e095b42b4307658dbcf2db6e53e10a850a52bfd10e7ad583f9c0dab35a21b743"
+  url "https://github.com/vrtulka23/scnt-puq/archive/refs/tags/v1.3.7.tar.gz"
+  sha256 "5dea99e3d55e79d6816bbff6269e9653d0041f314c5b3f68fde4074fa67b5b7b"
   license "MIT"
 
   depends_on "cmake" => :build
