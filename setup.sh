@@ -24,11 +24,22 @@ function update_version {
     echo $HASH
 }
 
+function install_formula {
+    NAME_FORMULA="scnt-${1}"
+    FILE_FORMULA="./${NAME_FORMULA}.rb"
+    if brew info $NAME_FORMULA &>/dev/null; then
+	brew reinstall --build-from-source $FILE_FORMULA
+    else
+	brew install --build-from-source $FILE_FORMULA
+    fi
+}
+
 function show_help {
     echo "Physical Units and Quantities"
     echo ""
     echo "Options:"
     echo " -u|--update         update code version"
+    echo " -i|--install        install formula"
     echo ""
     echo "Examples:"
     echo "./setup.sh -u"
@@ -41,6 +52,8 @@ while [[ $# -gt 0 ]]; do
     case $1 in
 	-u|--update)
 	    update_version $2; shift; shift;;
+	-i|--install)
+	    install_formula $2; shift; shift;;
 	-*|--*)
 	    show_help; exit 1;;
 	*)

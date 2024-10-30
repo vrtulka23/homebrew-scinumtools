@@ -3,8 +3,8 @@ class ScntPuq < Formula
   
   desc "Implementation of physical unit calculations in C++"
   homepage "https://github.com/vrtulka23/scnt-puq"
-  url "https://github.com/vrtulka23/scnt-puq/archive/refs/tags/v1.3.11.tar.gz"
-  sha256 "90eb6f863d3cb5e25b261f140ca37c1f4a10098d8bf0321ad57a5c099d535f15"
+  url "https://github.com/vrtulka23/scnt-puq/archive/refs/tags/v1.3.12.tar.gz"
+  sha256 "ac9c1e7d1bc62f388bd6a4f3403849d9300f430ee36d36df015874d3910c01fa"
   license "MIT"
 
   depends_on "cmake" => :build
@@ -12,15 +12,16 @@ class ScntPuq < Formula
   depends_on "google-benchmark"
   depends_on "vrtulka23/scinumtools/scnt-exs"
   depends_on "python@3"
-  depends_on "pybind11"
-
+  depends_on "virtualenv"
+  
   #resource "pypuq" do
-  #  url "https://files.pythonhosted.org/packages/09/d2/04db104cda0777cd22c55f83e4f9a5ff586f3abc1ee1a47a065a02428e6d/pypuq-1.3.1.tar.gz"
-  #  sha256 "d94a49ed535f10a55dff94c3d22b4faa916d6547a968db8929e92dffcd834e9d"
+  #  url "https://files.pythonhosted.org/packages/30/04/735018d44effca0381bd750b6bafb706706c970361e4311a52427e0b7a16/pypuq-1.3.4.tar.gz"
+  #  sha256 "c1dd98488e9f3d2abd86aaa90effeef104089aa4e5f5c02ce9a50bda2d6d024d"
   #end
 
   def install
 
+    # Get code version
     env_file = "settings.env"
     if File.exist?(env_file)
       File.readlines(env_file).each do |line|
@@ -36,12 +37,17 @@ class ScntPuq < Formula
       system "cmake", "..", *std_cmake_args, "-DCODE_VERSION=#{ENV['CODE_VERSION']}"
       system "make", "install"
     end
-    # install pypuq
-    #venv = virtualenv_create(libexec)
-    #%w[pypuq].each do |r|
-    #  venv.pip_install resource(r)
-    #end
-    #venv.pip_install_and_link buildpath
+    
+    # Install the Python package with pip
+    #python = Formula["python"].opt_bin/"python3"
+    #virtualenv_install_with_resources :using => "python@3"
+    #system python, "-m", "pip", "install", "pypuq"
+    # venv_dir = libexec/"vendor"
+    # python_version = Language::Python.major_minor_version(python)
+    # ENV.prepend_create_path "PYTHONPATH", venv_dir/"lib/#{python_version}/site-packages"    
+    # resource("pypuq").stage do
+    #   system python, "-m", "pip", "install", ".", "--prefix=#{venv_dir}", "--no-binary", ":all:"
+    # end
   end
 
   test do
