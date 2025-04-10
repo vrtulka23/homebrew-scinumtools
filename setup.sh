@@ -15,13 +15,14 @@ function update_version {
     VERSION=$(curl -L \
 	 -H "Accept: application/vnd.github+json" \
 	 -H "X-GitHub-Api-Version: 2022-11-28" \
-	 https://api.github.com/repos/vrtulka23/scnt-puq/releases/latest \
+	 https://api.github.com/repos/vrtulka23/scnt-$1/releases/latest \
 		  | sed -n 's/.*"tag_name": "\([^"]*\)".*/\1/p')
-    TARBALL="https://github.com/vrtulka23/scnt-puq/archive/refs/tags/${VERSION}.tar.gz"
+    TARBALL="https://github.com/vrtulka23/scnt-${1}/archive/refs/tags/${VERSION}.tar.gz"
     wget $TARBALL
     HASH=($(sha256sum ${VERSION}.tar.gz))
-    echo $TARBALL
-    echo $HASH
+    echo "Version: " $VERSION
+    echo "Tarball: " $TARBALL
+    echo "Hash:    " $HASH
 }
 
 function install_formula {
@@ -38,11 +39,11 @@ function show_help {
     echo "Physical Units and Quantities"
     echo ""
     echo "Options:"
-    echo " -u|--update         update code version"
-    echo " -i|--install        install formula"
+    echo " -u|--update  exs/puq   update code version"
+    echo " -i|--install           install formula"
     echo ""
     echo "Examples:"
-    echo "./setup.sh -u"
+    echo "./setup.sh -u exs"
 }
 
 if [[ "${1}" == "" ]]; then
