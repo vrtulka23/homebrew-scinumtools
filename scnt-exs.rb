@@ -1,8 +1,8 @@
 class ScntExs < Formula
   desc "Implementation of expression solver in C++"
   homepage "https://github.com/vrtulka23/scnt-exs"
-  url "https://github.com/vrtulka23/scnt-exs/archive/refs/tags/v1.2.0.tar.gz"
-  sha256 "8c837742e101d6e72613292f48f6b4e7421af706caca5f7e26c7f2d16425b557"
+  url "https://github.com/vrtulka23/scnt-exs/archive/refs/tags/v1.3.0.tar.gz"
+  sha256 "1b2459864ea22d94b8eacc5229482e6324e762e6e24e307987c78dff9555acb9"
   license "MIT"
 
   depends_on "cmake" => :build
